@@ -24,3 +24,4 @@ runs:
   steps:
   - name: Configure Kubeconfig
     run: ./kubeconfig.sh
+    shell: bash
