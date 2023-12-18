@@ -1,0 +1,31 @@
+name: 'Configure K8s context'
+description: 'Configure Kubeconfig to easily authenticate using service account token'
+inputs:
+  server:
+    description: K8s server endpoint
+    required: true
+  token:
+    description: base64 encoded service account token
+    required: true
+  ca:
+    description: base64 encoded ca cert
+    required: true
+  user:
+    description: name of the service account
+    required: false
+    default: jenkins
+
+branding:
+  color: 'purple'
+
+
+runs:
+  using: "composite"
+  steps:
+    - run: kubeconfig.sh
+      env:
+        CA: ${{ inputs.ca }}
+        TOKEN: ${{ inputs.token }}
+        URL: ${{ inputs.server }}
+        UNAME: ${{ inputs.user }}
+      shell: bash
