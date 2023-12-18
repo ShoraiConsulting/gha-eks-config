@@ -22,9 +22,15 @@ branding:
 runs:
   using: "composite"
   steps:
-  - uses: actions/checkout@v4
-    with:
-      path: ./gha-k8s-config/
   - name: Configure Kubeconfig
-    run: ./gha-k8s-config/kubeconfig.sh
+    run: |
+      echo "${{ inputs.ca }} > ./ca.crt" && \
+      kubectl config set-context \
+        --current \
+        --user=gha \
+        --certificate-authority=./ca.crt \
+        --server=${{ inputs.server }} \
+        --token=${{ inputs.token }} \
+        --username=${{ inputs.user }}
+
     shell: bash
