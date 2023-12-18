@@ -21,4 +21,6 @@ branding:
 
 runs:
   using: "composite"
-  main: ./kubeconfig.sh
+  steps:
+  - name: Configure Kubeconfig
+    run: ./kubeconfig.sh
