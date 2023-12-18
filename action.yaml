@@ -25,13 +25,14 @@ runs:
   - name: Configure Kubeconfig
     run: |
       echo "${{ inputs.ca }} > ./ca.crt" && \
-      kubectl config set-context \
-        current \
-        --user=gha \
-        --certificate-authority=./ca.crt \
+      kubectl config set-credentials ${{ inputs.user }} \
+        --token=${{ inputs.token }} && \
+      kubectl config set-cluster current \
         --server=${{ inputs.server }} \
-        --token=${{ inputs.token }} \
-        --username=${{ inputs.user }} && \
+        --certificate-authority=./ca.crt && \
+      kubectl config set-context current \
+        --user=${{ inputs.user }} \
+        --cluster=current && \
       kubectl config use-context current
 
     shell: bash
