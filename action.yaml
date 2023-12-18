@@ -28,6 +28,7 @@ runs:
       kubectl config set-credentials ${{ inputs.user }} \
         --token=${{ inputs.token }} && \
       kubectl config set-cluster current \
+        --embed-certs \
         --server=${{ inputs.server }} \
         --certificate-authority=./ca.crt && \
       kubectl config set-context current \
