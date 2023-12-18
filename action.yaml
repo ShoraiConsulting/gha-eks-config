@@ -32,6 +32,6 @@ runs:
         --server=${{ inputs.server }} \
         --token=${{ inputs.token }} \
         --username=${{ inputs.user }} && \
-      kubectl use-context current
+      kubectl config use-context current
 
     shell: bash
