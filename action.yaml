@@ -22,6 +22,9 @@ branding:
 runs:
   using: "composite"
   steps:
+  - uses: checkout/checkout@v2
+    with:
+      path: ./gha-k8s-config/
   - name: Configure Kubeconfig
-    run: ./kubeconfig.sh
+    run: ./gha-k8s-config/kubeconfig.sh
     shell: bash
