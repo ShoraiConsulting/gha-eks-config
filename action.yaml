@@ -21,11 +21,4 @@ branding:
 
 runs:
   using: "composite"
-  steps:
-    - run: kubeconfig.sh
-      env:
-        CA: ${{ inputs.ca }}
-        TOKEN: ${{ inputs.token }}
-        URL: ${{ inputs.server }}
-        UNAME: ${{ inputs.user }}
-      shell: bash
+  main: ./kubeconfig.sh
