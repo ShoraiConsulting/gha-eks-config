@@ -24,7 +24,7 @@ runs:
   steps:
   - name: Configure Kubeconfig
     run: |
-      echo "${{ inputs.ca }} > ./ca.crt" && \
+      echo "${{ inputs.ca }}" > ./ca.crt && \
       kubectl config set-credentials ${{ inputs.user }} \
         --token=${{ inputs.token }} && \
       kubectl config set-cluster current \
